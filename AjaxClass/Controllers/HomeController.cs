@@ -12,10 +12,13 @@ namespace AjaxClass.Controllers
         {
             _logger = logger;
         }
-
-        public IActionResult Index()
+        public IActionResult JsonRead()
         {
             return View();
+        }
+        public IActionResult Index()
+        {
+            return RedirectToAction("JsonRead");
         }
 
         public IActionResult Privacy()

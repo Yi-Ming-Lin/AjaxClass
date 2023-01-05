@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "JsonRead";
+}
+
+<h1>JsonRead</h1>
+<div id="div1"></div>
+@section Scripts{
+
+    <script>
+        var dataUrl = "https://data.tycg.gov.tw/api/v1/rest/datastore/bd906b29-9006-40ed-8bd7-67597c2577fc?format=json"
+       
+        $.ajax({
+            url: dataUrl,
+            method: 'GET',
+            dataType: 'json',
+            data: '',
+            async: true,
+
+            success: x => {
+                console.log(x.result.records.forEach(f=>{
+                    var card = `
+                                        <div class="card mt-3">
+                                          <div class="card-header">${f.Name}</div>
+                                          <div class="card-body">
+                                            <h5 class="card-title">${f.Add}</h5>
+                                            <p class="card-text">
+                                                      ${f.Toldescribe}
+                                            </p>
+                                                    <a href="${f.TYWebsite}" class="btn btn-primary">深入了解</a>
+                                          </div>
+                                        </div>
+                                        `
+                    $("#div1").append(card);
+                    console.log(f);
+                }))
+                
+                //res.forEach((x)=>{
+                //    console.log(x);
+                //})
+            },
+            error: err => {
+                console.log(err)
+            },
+        });
+
+   </script>
+}
