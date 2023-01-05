@@ -21,12 +21,18 @@
                 console.log(x.result.records.forEach(f=>{
                     var card = `
                                         <div class="card mt-3">
-                                          <div class="card-header">${f.Name}</div>
+                                                  <div class="card-header">${f.Add}</div>
                                           <div class="card-body">
-                                            <h5 class="card-title">${f.Add}</h5>
+                                                    <h5 class="card-title">${f.Name}</h5>
                                             <p class="card-text">
                                                       ${f.Toldescribe}
-                                            </p>
+                                                    </p>
+                                           <p class="card-text">
+                                                               開放時間: ${f.Opentime}
+                                             </p>
+                                            <p class="card-text">
+                                                                 是否收費: ${f.Ticketinfo}
+                                             </p>
                                                     <a href="${f.TYWebsite}" class="btn btn-primary">深入了解</a>
                                           </div>
                                         </div>
