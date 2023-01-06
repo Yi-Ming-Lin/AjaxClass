@@ -10,9 +10,7 @@
     <script>
         var dataUrl = "https://data.tycg.gov.tw/api/v1/rest/datastore/bd906b29-9006-40ed-8bd7-67597c2577fc?format=json"
         var xhr = new XMLHttpRequest();
-        xhr.addEventListener("loadstart",()=>{
-            $("#div1").append("<pp>")
-        })
+
         xhr.addEventListener("load",function(){
             var card = "";
             var x = JSON.parse(xhr.responseText)
