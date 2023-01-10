@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+*@
+<body>
+    <select id="citys"></select>
+    <select id="states"></select>
+    <select id="roads"></select>
+</body>
+@section Scripts{
+  <script>
+        var c = document.getElementById("citys");
+        var s = document.getElementById("states");
+        var r = document.getElementById("roads");
+
+        c.addEventListener("change", () => getState());
+        s.addEventListener("change", () => getRoad());
+
+        getCity();
+
+      async function getCity(){
+           const response = await  fetch("@Url.Content("~/fetch/city")");
+           const citys =await response.json();
+           const cityoption = citys.map(x=>`<option value = ${x}>${x}</option>`)
+           c.innerHTML = cityoption.join("");
+            getState();
+
+      }
+
+      async function getState(){
+          const city = c.value;
+          const response = await fetch(`@Url.Content("~/fetch/state?city=${city}")`)
+          const states = await response.json();
+           const stateoption = states.map(x=>`<option value = ${x}>${x}</option>`)
+             s.innerHTML = stateoption.join(" ");
+           await getRoad();
+      }
+
+      async function getRoad(){
+          const states = s.value;
+          const response = await fetch(`@Url.Content("~/fetch/road?state=${states}")`)
+          const road = await response.json();
+          const roadoption = road.map(x=>`<option value = ${x}>${x}</option>`)
+             r.innerHTML = roadoption.join(" ");
+      }
+  </script>
+
+
+
+
+}
